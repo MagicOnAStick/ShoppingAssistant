@@ -1,0 +1,204 @@
+db.grocerylist.insert([
+	{
+		dish_name: "Weisswuerste mit Brezeln",
+		ingredients:[
+			ingredient:{
+				name: "Weisswurst",
+				amount: 4,
+				amount_desc: "Paar",
+				category: "Fleisch"							
+			},
+			ingredient:{
+				name: "Brezel",
+				amount: 2,
+				category: "Backwaren"
+			},
+			ingredient:{
+				name: "Suesser Senf",
+				amount: 1,
+				amount_desc: "Glas",
+				amount_type: "XL",
+				category: "Dip"
+			}
+		]
+	},
+	{
+		dish_name: "Leberkaese mit Sauerkraut und Kartoffeln",
+		ingredients:[
+			ingredient:{
+				name: "Leberkaese",
+				amount: 1,
+				amount_desc: "Packung",
+				category: "Fleisch"							
+			},
+			ingredient:{
+				name: "Sauerkraut",
+				amount: 1,
+				amount_desc: "Dose oder Glas",
+				amount_type: "S",
+				category: "Gemuese"
+			},
+			ingredient:{
+				name: "Kartoffeln",
+				amount: 1,
+				amount_desc: "Sack",
+				amount_type: "XL",
+				category: "Gemuese"
+			}
+		]
+	},
+	{
+		dish_name: "Hackfleischsteaks mit Kartoffelsalat",
+		ingredients:[
+			ingredient:{
+				name: "Hackfleisch",
+				amount: 500,
+				amount_desc: "Gramm",
+				category: "Fleisch"							
+			},
+			ingredient:{
+				name: "Kartoffeln",
+				amount: 1,
+				amount_desc: "Sack",
+				amount_type: "XL",
+				category: "Gemuese"
+			},
+			ingredient:{
+				name: "Scharfer Senf",
+				amount: 1,
+				amount_desc: "Glas",
+				amount_type: "XL",
+				category: "Dip"
+			}
+		]
+	},
+	{
+		dish_name: "Cheeseburger",
+		ingredients:[
+			ingredient:{
+				name: "Hackfleisch",
+				amount: 600,
+				amount_desc: "Gramm",
+				category: "Fleisch"							
+			},
+			ingredient:{
+				name: "Burger Buns",
+				amount: 2,
+				amount_desc: "Packung",
+				amount_type: "S",
+				category: "Backwaren"
+			},
+			ingredient:{
+				name: "Scharfer Senf",
+				amount: 1,
+				amount_desc: "Glas",
+				amount_type: "XL",
+				category: "Dip"
+			},
+			ingredient:{
+				name: "Ketchup",
+				amount: 1,
+				amount_desc: "Tube",
+				amount_type: "XL",
+				category: "Dip"
+			},
+			ingredient:{
+				name: "Blattsalat",
+				amount: 1,
+				amount_desc: "",
+				amount_type: "L",
+				category: "Gemuese"
+			},
+			ingredient:{
+				name: "Tomaten",
+				amount: 1,
+				amount_desc: "Packung",
+				amount_type: "L",
+				category: "Gemuese"
+			},
+			ingredient:{
+				name: "Essiggurken",
+				amount: 1,
+				amount_desc: "Glas",
+				amount_type: "L",
+				category: "Gemuese"
+			}
+	},
+	{
+		dish_name: "Geschnetzeltes mit Rahmsosse Pilzen und Reis",
+		ingredients:[
+			ingredient:{
+				name: "Wildreis",
+				amount: 1,
+				amount_desc: "Packung",
+				category: "Beilage"							
+			},
+			ingredient:{
+				name: "Pilze",
+				amount: 1,
+				amount_desc: "Packung",
+				amount_type: "L",
+				category: "Gemuese"
+			},
+			ingredient:{
+				name: "Putengeschnetzeltes",
+				amount: 3,
+				amount_desc: "Scheiben",
+				amount_type: "S",
+				category: "Fleisch"
+			},
+			ingredient:{
+				name: "Laktosefreie Sahne",
+				amount: 1,
+				amount_desc: "Packung",
+				amount_type: "S",
+				category: "Zutat"
+			}
+		]
+	},
+{
+		dish_name: "Fischgericht mit Pellkartoffeln und Senfsosse",
+		ingredients:[
+			ingredient:{
+				name: "Fisch",
+				amount: 500,
+				amount_desc: "Gramm",
+				category: "Fisch"							
+			},
+			ingredient:{
+				name: "Kartoffeln",
+				amount: 1,
+				amount_desc: "Sack",
+				amount_type: "XL",
+				category: "Gemuese"
+			},
+			ingredient:{
+				name: "Senf fur Sosse",
+				amount: 1,
+				amount_desc: "Glas oder Koerner",
+				amount_type: "S",
+				category: "Zutat"
+			},
+			ingredient:{
+				name: "Laktosefreie Sahne",
+				amount: 1,
+				amount_desc: "Packung",
+				amount_type: "S",
+				category: "Zutat"
+			}
+		]
+	},
+]);
+
+
+// IDEEN
+Zutatenaufteilung:
+Wenn Zutat mehrfach in Gerichten verwendet dann Menge auf Liste anpassen wenn nach "amount_type"
+S für 1-2 Gerichte
+M für 2-3 Gerichte
+L für 3-4 Gerichte
+XL für 4-X Gerichte
+ 
+Kindergerecht:
+Wenn Suesser/Scharfer Senf in Zutatenliste dann als Fallback auch Ketchup auf die Liste
+Wenn Gericht mit Soße oder Dip dann automatisch Servietten auf die Liste
