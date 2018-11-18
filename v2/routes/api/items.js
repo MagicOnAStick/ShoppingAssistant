@@ -9,7 +9,7 @@ const Item = require('../../models/Item');
 // @description     Get all items
 // @access          public
 
-//router.get instead of app.get without evaquated routing /api/items can be omitted 
+//router.get instead of app.get without evaquated routing /api/items can be omitted because of the app.use in server.js
 router.get("/", (req,res) => {
     Item.find()
         .sort({date : -1})
@@ -20,7 +20,7 @@ router.get("/", (req,res) => {
 // @description     create a item
 // @access          public
 
-//router.get instead of app.get without evaquated routing /api/items can be omitted 
+//router.post instead of app.post without evaquated routing /api/items can be omitted 
 router.post("/", (req,res) => {
 
     const newItem = new Item({
