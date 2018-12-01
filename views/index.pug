@@ -1,0 +1,9 @@
+extends layout
+
+block content
+    h1 #{title}
+    ul.list-group
+        each recipe, i in recipes
+            //- '=' writes the variable
+            li.list-group-item
+                p= recipe.dish_name

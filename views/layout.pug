@@ -1,0 +1,42 @@
+doctype html
+html
+    head
+        title Shoppingassistant
+        link(rel="stylesheet", href="/bower_components/boostrap/dist/css/bootstrap.css")
+        link(rel="stylesheet", href="/css/style.css")
+        script(src='/bower_components/jquery/dist/jquery.js')
+        script(src='/bower_components/boostrap/dist/js/bootstrap.js')
+        script(src="/js/main.js")
+    body
+        nav.navbar.navbar-expand-lg.navbar-dark.bg-primary.mb-5
+            a.navbar-brand(href='/') Shoppingassistant
+            button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNav', aria-controls='navbarNav', aria-expanded='false', aria-label='Toggle navigation')
+                span.navbar-toggler-icon
+            #navbarNav.collapse.navbar-collapse
+                ul.navbar-nav
+                    if user
+                        li.nav-item
+                        a.nav-link(href='/blogposts/add') Add Blogpost
+                ul.navbar-nav.ml-auto
+                    if user
+                        li.nav-item
+                            a.nav-link(href='/users/logout') Logout    
+                    else
+                        li.nav-item
+                            a.nav-link(href='/users/register') Register
+                        li.nav-item
+                            a.nav-link(href='/users/login') Login
+
+        .container
+            != messages('message', locals)
+            if errors
+                each error, i in errors
+                    div(class='alert alert-danger') #{error.msg}
+            block content
+            br
+            hr
+            footer
+                p Copyright &copy 2018
+        
+        
+

@@ -4,13 +4,13 @@ db.grocerylist.insert([
 		ingredients:[
 			ingredient:{
 				name: "Weisswurst",
-				amount: 4,
+				amount: 3,
 				amount_desc: "Paar",
 				category: "Fleisch"							
 			},
 			ingredient:{
 				name: "Brezel",
-				amount: 2,
+				amount: 3,
 				category: "Backwaren"
 			},
 			ingredient:{

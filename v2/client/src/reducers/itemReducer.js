@@ -19,8 +19,13 @@ export default function(state = initialState, action){
             };
         case DELETE_ITEM:
             return {
-                ...state,
+                ...state, //mutation follows
                 items: state.items.filter(item =>  item.id!== action.payload)
+            };
+        case ADD_ITEM:
+            return {
+                ...state, //mutation follows
+                items: [action.payload, ...state.items]
             };
 
         default:

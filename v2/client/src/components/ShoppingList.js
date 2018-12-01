@@ -17,7 +17,7 @@ class ShoppingList extends Component{
 
     render(){
         //destructuring items from this.state.items
-        //const  {items} = this.state;
+        //const  {items} = this.state; <= state is no longer held in the component anymore -> null!
 
         //this.props.item is the whole state and items is the held state content we want to access
         const items = this.props.item.items;
@@ -29,10 +29,13 @@ class ShoppingList extends Component{
                         {items.map(({id,name}) =>(
                             <CSSTransition key={id} timeout={500} classNames="fade">
                                 <ListGroupItem key={id}>
-                                <Button className="remove-btn" color="danger" size="sm" 
-                                onClick={this.onDeleteClick.bind(this,id)}>
-                                &times;</Button>
+                                    
+                                    <Button className="remove-btn" color="danger" size="sm" 
+                                    onClick={this.onDeleteClick.bind(this,id)}>
+                                    &times;
+                                    </Button>
                                     {name}
+
                                 </ListGroupItem>
                             </CSSTransition>
                         ))}
@@ -49,10 +52,12 @@ ShoppingList.propTypes = {
     item: PropTypes.object.isRequired
 }
 
+//maps the components state to the given reducer state
 const mapStateToProps = (state) => ({
-    //the name of the reducer in combineReducers
+    //item => the name of the root reducer in combineReducers
+    //state.item => the compnent state
     item : state.item
 });
 
-//connects this state with the property of getItems in item actions
+//connects this state with the property of getItems in item actions and lets the item actions access the reducer
 export default connect(mapStateToProps,{getItems, deleteItem})(ShoppingList);
