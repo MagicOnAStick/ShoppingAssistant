@@ -3,8 +3,6 @@ import{Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input} fro
 import {connect} from 'react-redux';
 import {addItem} from '../actions/itemActions';
 
-import uuid from 'uuid';
-
 class ItemModal extends Component {
 
     //explicit use of component state because one has to differentiate application (redux) state and component concerns
@@ -27,7 +25,7 @@ class ItemModal extends Component {
     onSubmit = e =>{
         e.preventDefault();
         const newItem ={
-            id: uuid(),
+            //id: uuid(), - MONGODB auto id gen
             name: this.state.name
         }
 
