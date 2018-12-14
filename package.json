@@ -1,20 +1,25 @@
 {
-  "name": "einkaufshelfer",
+  "name": "shopping_list",
   "version": "1.0.0",
-  "description": "Generiert Einkaufsliste",
-  "main": "app.js",
+  "description": "Shopping list v2",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "server": "nodemon server.js",
+    "client-install": "npm install --prefix client",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"    
   },
-  "author": "jwill",
-  "license": "ISC",
+  "author": "Julian Will",
+  "license": "MIT",
   "dependencies": {
-    "body-parser": "^1.18.2",
-    "connect-flash": "^0.1.1",
-    "express": "^4.16.2",
-    "express-messages": "^1.0.1",
-    "express-session": "^1.15.6",
-    "mongoose": "^5.0.1",
-    "pug": "^2.0.3"
+    "body-parser": "^1.18.3",
+    "concurrently": "^4.0.1",
+    "express": "^4.16.3",
+    "mongoose": "^5.2.12"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.4"
   }
 }
