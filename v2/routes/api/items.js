@@ -40,7 +40,7 @@ router.post("/", (req,res) => {
 //router.get instead of app.get without evaquated routing /api/items can be omitted 
 router.delete("/:id", (req,res) => {
     Item.findById(req.params.id)
-    .then(item => item.remove().then(() => res.json({success: true})))    
+    .then(item => item.remove().then(() => res.json({success: true})))   //returns success: true 
     .catch(err => res.status(404).json({success:false}));     
 });
     

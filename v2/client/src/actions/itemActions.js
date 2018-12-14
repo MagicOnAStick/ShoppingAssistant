@@ -6,9 +6,9 @@ export const getItems = () => dispatch => {
     dispatch(setItemsLoading());
     //see package.json proxy for avoiding the need of using the full path
     axios
-    .get('/api/items')
+    .get('/api/items') //connect to backend
     .then(res => dispatch({
-        //return for reducer logic
+        //return for reducer logic at frontend ( react ui connection )
         type: GET_ITEMS,
         payload: res.data
     }))
@@ -23,11 +23,14 @@ export const addItem = item => dispatch =>{
     }))
 }
 
-export const deleteItem = id => {
-    return {
+export const deleteItem = id => dispatch => {
+    //remove from server
+    axios.delete(`/api/items/${id}`)
+    //remove from ui
+    .then(res => dispatch({
         type: DELETE_ITEM,
         payload: id
-    }
+    }))
 }
 
 export const setItemsLoading = () =>{
