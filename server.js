@@ -7,6 +7,7 @@ const path = require('path');
 const app = express();
 
 const items = require('./routes/api/items');
+const users = require('./routes/api/users');
 
 //Bodyparser Middleware
 
@@ -21,8 +22,9 @@ mongoose
     .then(() => console.log('mongodb connected'))
     .catch(err => console.log(err));
 
-//use routes if /api/items/* is called
+//use routes if paths are called from the application
 app.use('/api/items', items);
+app.use('/api/users',users);
 
 //deployment
 if(process.env.NODE_ENV === 'production'){
