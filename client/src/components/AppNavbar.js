@@ -35,6 +35,11 @@ class AppNavbar extends Component{
                                 </Link>
                             </NavItem>
                             <NavItem>
+                                <Link className="nav-link" to="/mylist">
+                                    My List
+                                </Link>
+                            </NavItem>
+                            <NavItem>
                                 <Link className="nav-link" to="/">
                                     Recipes
                                 </Link>

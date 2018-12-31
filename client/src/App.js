@@ -6,6 +6,8 @@ import AppNavbar from './components/AppNavbar';
 import ShoppingList from './components/ShoppingList';
 import Register from './components/auth/register';
 import Login from './components/auth/login';
+import Landing from './components/Landing';
+import Footer from './components/Footer';
 
 import {Container} from 'reactstrap';
 
@@ -22,11 +24,13 @@ class App extends Component {
         <Provider store={store}>
           <div className="App">
             <AppNavbar />
-            <Route exact path="/" component={ShoppingList}/>
+            <Route exact path="/" component={Landing} />
             <div className="container">
               <Route exact path="/register" component={Register}/>
               <Route exact path="/login" component={Login}/>
+              <Route exact path="/mylist" component={ShoppingList}/>
             </div>
+            <Footer />
           </div>
         </Provider>
        </Router>
