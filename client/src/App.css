@@ -29,9 +29,9 @@ img {
     background: url('./img/showcase.jpg') no-repeat;
     background-size: cover;
     background-position: center;
-    height: 84.2vh;
-    margin-top: -50px;
-    margin-bottom: -50px;
+    height: 86.7vh;
+    margin-top: -48px;
+    margin-bottom: -48px;
   }
   
   .landing-inner {
@@ -39,7 +39,7 @@ img {
   }
   
   .dark-overlay {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.65);
     position: absolute;
     top: 0;
     left: 0;
@@ -51,10 +51,7 @@ img {
     opacity: 0.9;
   }
   
-  .latest-profiles-img {
-    width: 40px;
-    height: 40px;
-  }
+
   
   .form-control::placeholder {
     color: #bbb !important;

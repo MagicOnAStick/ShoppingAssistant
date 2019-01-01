@@ -20,8 +20,8 @@ class App extends Component {
   render() {
     return (
       //wrap the components which will use the store inside provider for later on state handling
-      <Router>
-        <Provider store={store}>
+      <Provider store={store}>
+        <Router>
           <div className="App">
             <AppNavbar />
             <Route exact path="/" component={Landing} />
@@ -32,8 +32,8 @@ class App extends Component {
             </div>
             <Footer />
           </div>
-        </Provider>
-       </Router>
+        </Router>
+       </Provider>
     );
   }
 }
