@@ -3,25 +3,26 @@ import  {GET_ITEMS, ADD_ITEM, DELETE_ITEM, ITEMS_LOADING} from '../actions/types
 //actual state holded in
 const initialState = {
     items: [],
-    loading: false
+    loading: false,
 }
 
 export default function(state = initialState, action){
     switch(action.type){
         case GET_ITEMS:
             return {
+                //IMPORTANT: https://stackoverflow.com/questions/31048953/what-do-these-three-dots-in-react-do
                 ...state,
                 items: action.payload,
                 loading: false
             };
         case DELETE_ITEM:
             return {
-                ...state, //mutation follows
+                ...state,
                 items: state.items.filter(item =>  item._id!== action.payload)
             };
         case ADD_ITEM:
             return {
-                ...state, //mutation follows
+                ...state,
                 items: [action.payload, ...state.items]
             };
         case ITEMS_LOADING:

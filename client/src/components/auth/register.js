@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-//axios is an http client (alternative to js fetch api)
-import axios from 'axios';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import classnames from 'classnames';
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 
 class Register extends Component{
 
@@ -19,6 +21,28 @@ class Register extends Component{
       this.onSubmit = this.onSubmit.bind(this);
     }
 
+    //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
+    componentWillReceiveProps(nextProps) {
+      // test for errors prop
+      if (nextProps.errors) {
+        this.setState({ errors: nextProps.errors });
+      }
+    }
+
+    // static getDerivedStateFromProps(nextProps, prevState) {
+    //   if (nextProps.errors) {
+    //     return { errors: nextProps.errors };
+    //   }
+    //   return null
+    // }
+   
+    // componentDidUpdate(prevProps, prevState) {
+    //   if (prevProps.errors !== this.props.errors) {
+    //     this.setState({ errors: this.props.errors })
+    //   }
+    // }
+  
+
     onChange(e){
       this.setState({[e.target.name]: e.target.value});
     }
@@ -31,14 +55,17 @@ class Register extends Component{
         password: this.state.password,
         password2: this.state.password2
       }
-      
-      axios.post('/api/users/register',newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({errors : err.response.data}));
+
+      //this.props is accessible due to react-redux connect and holds all connected actions, props are action and reducer(state) accessors basically...
+      //all reducers which are connected within index.js (rootReducer) and have cases for this action type get invoked with this call
+      this.props.registerUser(newUser,this.props.history);
+      //this.props.history for navigation purpose within the action (authAction)
     }
 
     render(){
       const { errors } = this.state;
+      //same as const {user} = this.const.auth;
+      //const user = this.props.auth.user;
 
         return (
             <div className="register">
@@ -110,4 +137,21 @@ class Register extends Component{
     }
 }
 
-export default Register; 
+Register.propTypes = {
+  registerUser : PropTypes.func.isRequired,
+  auth : PropTypes.object.isRequired,
+  errors : PropTypes.object.isRequired
+};
+
+//to access the redux state in this component we must map it
+const mapStateToProps = (state) => ({
+  //IMPORTANT! auth is called auth because the authReducer is called so within the rootReducer, so we can access the authReducers by doing so
+  auth: state.auth,
+  //access the reducer properties with: this.props.auth | authproperties in any other component to access auth state
+  
+  errors: state.errors
+  //access the reducer properties with: this.props.errors | errorproperties in any other component to access errors state
+});
+
+//IMPORTANT! wrapping inside of withRouter enables to use redirecting outside of components for example within actions
+export default connect(mapStateToProps, {registerUser})(withRouter(Register)); 

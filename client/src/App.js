@@ -8,9 +8,6 @@ import Register from './components/auth/register';
 import Login from './components/auth/login';
 import Landing from './components/Landing';
 import Footer from './components/Footer';
-
-import {Container} from 'reactstrap';
-
 import './App.css';
 
 import {Provider} from 'react-redux';

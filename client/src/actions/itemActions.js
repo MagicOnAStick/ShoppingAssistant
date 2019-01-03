@@ -8,7 +8,7 @@ export const getItems = () => dispatch => {
     axios
     .get('/api/items') //connect to backend
     .then(res => dispatch({
-        //return for reducer logic at frontend ( react ui connection )
+        // IMPORTANT return for calling reducer logic at all reducers with a case for the type
         type: GET_ITEMS,
         payload: res.data
     }))
