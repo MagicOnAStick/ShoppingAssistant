@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import store from './store';
+
+import jwt_decode from 'jwt-decode';
+import setAuthToken from './utils/setAuthToken';
+import { setCurrentUser } from './actions/authActions';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import AppNavbar from './components/AppNavbar';
@@ -10,8 +16,16 @@ import Landing from './components/Landing';
 import Footer from './components/Footer';
 import './App.css';
 
-import {Provider} from 'react-redux';
-import store from './store';
+//check for token to keep logged in on page change or reload
+const jwtToken = localStorage.jwtToken;
+if(jwtToken){
+  //set auth token header auth
+  setAuthToken(jwtToken);
+  //decode token and get user info and expiration
+  const decoded = jwt_decode(jwtToken);
+  //set user and is authenticated - call any action within the store (actions and reducers are linked)
+  store.dispatch(setCurrentUser(decoded));
+}
 
 class App extends Component {
   render() {

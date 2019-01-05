@@ -22,25 +22,25 @@ class Register extends Component{
     }
 
     //WARNING! To be deprecated in React v17. Use new lifecycle static getDerivedStateFromProps instead.
-    componentWillReceiveProps(nextProps) {
-      // test for errors prop
-      if (nextProps.errors) {
-        this.setState({ errors: nextProps.errors });
-      }
-    }
+    //componentWillReceiveProps(nextProps) {
+      //test for errors prop
+      //if (nextProps.errors) {
+      //  this.setState({ errors: nextProps.errors });
+      //}
+    //}
 
-    // static getDerivedStateFromProps(nextProps, prevState) {
-    //   if (nextProps.errors) {
-    //     return { errors: nextProps.errors };
-    //   }
-    //   return null
-    // }
+    static getDerivedStateFromProps(nextProps, prevState) {
+       if (nextProps.errors) {
+         return { errors: nextProps.errors };
+       }
+       return null
+    }
    
-    // componentDidUpdate(prevProps, prevState) {
-    //   if (prevProps.errors !== this.props.errors) {
-    //     this.setState({ errors: this.props.errors })
-    //   }
-    // }
+    static componentDidUpdate(prevProps, prevState) {
+       if (prevProps.errors !== this.props.errors) {
+         this.setState({ errors: this.props.errors })
+       }
+    }
   
 
     onChange(e){
