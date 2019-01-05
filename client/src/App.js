@@ -8,7 +8,7 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser } from './actions/authActions';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import AppNavbar from './components/AppNavbar';
+import Navbar from './components/Navbar';
 import ShoppingList from './components/ShoppingList';
 import Register from './components/auth/register';
 import Login from './components/auth/login';
@@ -34,7 +34,7 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <AppNavbar />
+            <Navbar />
             <Route exact path="/" component={Landing} />
             <div className="container">
               <Route exact path="/register" component={Register}/>

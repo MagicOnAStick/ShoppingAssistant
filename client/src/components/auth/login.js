@@ -52,7 +52,7 @@ class Login extends Component {
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
               <p className="lead text-center">
-                Sign in to your DevConnector account
+                Sign in to your ShoppingList account
               </p>
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
@@ -106,5 +106,5 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-//actions are linked to the store with connect
+//actions are linked to the store with connect via method imports
 export default connect(mapStateToProps, { loginUser })(Login);

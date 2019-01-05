@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 class Landing extends Component {
   render() {
+    //TODO render other nav buttons if logged in
     return (
       <div className="landing">
         <div className="dark-overlay landing-inner text-light">
