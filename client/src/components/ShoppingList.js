@@ -9,7 +9,12 @@ import ItemModal from './ItemModal';
 class ShoppingList extends Component{
 
     componentDidMount(){
+        if(!this.props.auth.isAuthenticated){
+              this.props.history.push('/login');
+        }
+        else{
         this.props.getItems();
+        }   
     }
 
     onDeleteClick = (id) => {
@@ -51,6 +56,7 @@ class ShoppingList extends Component{
 
 ShoppingList.propTypes = {
     getItems: PropTypes.func.isRequired,
+    auth: PropTypes.object.isRequired,
     item: PropTypes.object.isRequired
 }
 
@@ -58,7 +64,8 @@ ShoppingList.propTypes = {
 const mapStateToProps = (state) => ({
     //item => the name of the root reducer in combineReducers
     //state.item => the compnent state
-    item : state.item
+    item : state.item,
+    auth : state.auth
 });
 
 //connects this state with the property of getItems in item actions and lets the item actions access the reducer

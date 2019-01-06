@@ -5,7 +5,7 @@ import store from './store';
 
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
-import { setCurrentUser } from './actions/authActions';
+import { setCurrentUser, logoutUser } from './actions/authActions';
 
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './components/Navbar';
@@ -18,6 +18,8 @@ import './App.css';
 
 //check for token to keep logged in on page change or reload
 const jwtToken = localStorage.jwtToken;
+
+//does the jwt auth token exist in local storage?
 if(jwtToken){
   //set auth token header auth
   setAuthToken(jwtToken);
@@ -25,6 +27,14 @@ if(jwtToken){
   const decoded = jwt_decode(jwtToken);
   //set user and is authenticated - call any action within the store (actions and reducers are linked)
   store.dispatch(setCurrentUser(decoded));
+
+  //check for expired token
+  const currentTime = Date.now() / 1000;
+  if( decoded.exp < currentTime ){
+    //Logout user
+    store.dispatch(logoutUser());
+    window.location.href = '/login';
+  }
 }
 
 class App extends Component {

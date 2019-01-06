@@ -21,36 +21,45 @@
 }
 
 img {
-    width: 100%;
-  }
-  
-  .landing {
-    position: relative;
-    background: url('./img/showcase.jpg') no-repeat;
-    background-size: cover;
-    background-position: center;
-    height: 86.69vh; /*todo this is 100vh minus footer height*/
-  }
-  
-  .landing-inner {
-    padding-top: 80px;
-  }
-  
-  .dark-overlay {
-    background-color: rgba(0, 0, 0, 0.65);
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-  
-  .card-form {
-    opacity: 0.9;
-  }
-  
+  width: 100%;
+}
 
-  
-  .form-control::placeholder {
-    color: #bbb !important;
-  }
+.landing {
+  position: relative;
+  background: url('./img/showcase.jpg') no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+}
+
+.landing-inner {
+  padding-top: 80px;
+}
+
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-form {
+  opacity: 0.9;
+}
+
+.latest-profiles-img {
+  width: 40px;
+  height: 40px;
+}
+
+.form-control::placeholder {
+  color: #bbb !important;
+}
+
+.myfooter{
+  position:absolute;
+  bottom:0;
+  width: 100%;
+}
