@@ -64,7 +64,7 @@ class Register extends Component{
 
     verifyCallback(res){
       if(res){
-        this.state.recaptchaAuth = true;
+        this.setState({recaptchaAuth : true});
       }
     }
 
@@ -157,12 +157,14 @@ class Register extends Component{
                         {errors.name && (<div className="invalid-feedback">{errors.password2}</div>)}
                       </div>
                       <input type="submit" className={classnames('btn btn-info btn-block mt-4')}/>
-                      <Recaptcha
-                        sitekey="6Lcay0AUAAAAAOsv6FQlFexy08Be9mOQKZbPjj6W"
-                        render="explicit"
-                        onloadCallback={this.recaptchaLoaded}
-                        verifyCallback={this.verifyCallback}
-                      />
+                      <div className="mt-4">
+                        <Recaptcha
+                          sitekey="6Lcay0AUAAAAAOsv6FQlFexy08Be9mOQKZbPjj6W"
+                          render="explicit"
+                          onloadCallback={this.recaptchaLoaded}
+                          verifyCallback={this.verifyCallback}
+                        />
+                      </div>
                       {errors.recaptcha && (<div className="invalid-feedback">You failed the humanity check</div>)}
                     </form>
                   </div>

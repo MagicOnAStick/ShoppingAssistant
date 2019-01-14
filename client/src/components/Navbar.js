@@ -9,7 +9,7 @@ class Navbar extends Component {
   onLogoutClick(e) {
     e.preventDefault();
     this.props.logoutUser();
-    //this.props.history.push("/");
+    window.location.href = '/login';
   }
 
   render() {
