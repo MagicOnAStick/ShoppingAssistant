@@ -13,7 +13,7 @@ class ShoppingList extends Component{
               this.props.history.push('/login');
         }
         else{
-        this.props.getItems();
+            this.props.getItems(this.props.auth.user.id);
         }   
     }
 
@@ -27,13 +27,9 @@ class ShoppingList extends Component{
 
         //this.props.item is the whole state and items is the held state content we want to access
         const items = this.props.item.items;
-
-        return(
-            <Container>
-                <ItemModal/>
-                <ListGroup>
-                    <TransitionGroup className="shopping-list">
-                        {items.map(({_id,name}) =>(
+        let itemList;
+        if((items !== undefined) && (items !== null)){
+            itemList = items.map(({_id,name}) =>(
                             <CSSTransition key={_id} timeout={500} classNames="fade">
                                 <ListGroupItem key={_id}>
                                     
@@ -45,7 +41,15 @@ class ShoppingList extends Component{
 
                                 </ListGroupItem>
                             </CSSTransition>
-                        ))}
+                        ))
+        }
+        
+        return(
+            <Container>
+                <ItemModal/>
+                <ListGroup>
+                    <TransitionGroup className="shopping-list">
+                        {itemList}
                     </TransitionGroup>
                 </ListGroup>
             </Container>

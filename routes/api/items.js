@@ -10,8 +10,9 @@ const Item = require('../../models/Item');
 // @access          public
 
 //router.get instead of app.get without evaquated routing /api/items can be omitted because of the app.use in server.js
-router.get("/", (req,res) => {
-    Item.find()
+router.get("/:user_id", (req,res) => {
+    //TODO FIND BY ID IS NOT CORRENT, SEARCH FOR USER_ID MATCH IN ITEMS!
+    Item.find({'user_id':req.params.user_id})
         .sort({date : -1})
         .then(items => res.json(items));
 });
@@ -24,7 +25,8 @@ router.get("/", (req,res) => {
 router.post("/", (req,res) => {
 
     const newItem = new Item({
-        name: req.body.name
+        name: req.body.name,
+        user_id: req.body.user_id
     });
 
     newItem

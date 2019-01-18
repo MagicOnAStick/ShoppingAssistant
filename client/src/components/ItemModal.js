@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import{Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Label, Input} from 'reactstrap';
-import {connect} from 'react-redux';
-import {addItem} from '../actions/itemActions';
+
+
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { addItem } from '../actions/itemActions';
 
 class ItemModal extends Component {
 
@@ -24,9 +27,15 @@ class ItemModal extends Component {
 
     onSubmit = e =>{
         e.preventDefault();
-        const newItem ={
+         
+        const user = this.props.auth.user;
+        const newItem = user =>{
             //id: uuid(), - MONGODB auto id gen
             name: this.state.name
+            if(user){
+               user_id: user.id
+            }
+           
         }
 
         //Add Item via AddItemAction
@@ -80,11 +89,18 @@ class ItemModal extends Component {
     }
 }
 
+ItemModal.propTypes = {
+  item : PropTypes.object.isRequired,
+  auth : PropTypes.object.isRequired,
+  addItem : PropTypes.func.isRequired
+};
+
 //maps the components state to the given reducer state
 const mapStateToProps = (state) => ({
     //item => the name of the root reducer in combineReducers
     //state.item => the compnent state
-    item : state.item
+    item : state.item,
+    auth : state.auth
 });
 
 //connects this state with the property of getItems in item actions and lets the item actions access the reducer
