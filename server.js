@@ -13,7 +13,7 @@ const users = require('./routes/api/users');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-//DB Config
+//DB Config //TODO check deprecation warning
 const db = require('./config/keys').mongoURI;
 
 //connect to mongo (promise based)
