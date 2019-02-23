@@ -14,11 +14,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //DB Config //TODO check deprecation warn
-const db = require('./config/keys').mongoURI;
+const db = require('./config/keyslocal').mongoURI;
 
 //connect to mongo (promise based)
 mongoose
-    .connect(db)
+    .connect(db,{ useNewUrlParser: true })
     .then(() => console.log('mongodb connected'))
     .catch(err => console.log(err));
 
