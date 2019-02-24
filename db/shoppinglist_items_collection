@@ -1,0 +1,4 @@
+{"_id":{"$oid":"5b8a1ad3f7b3472ae9d6a95d"},"name":"Milk","date":{"$date":"2018-09-01T04:51:31.227Z"},"user_id":"5c3085a7a3885417eafce6b6","__v":0}
+{"_id":{"$oid":"5c03d5122850401a7a9a0563"},"name":"Eggs","date":{"$date":"2018-12-02T12:50:26.379Z"},"user_id":"5c3085a7a3885417eafce6b6","__v":0}
+{"_id":{"$oid":"5c03d78eea8a952012018bf2"},"name":"Water","date":{"$date":"2018-12-02T13:01:02.182Z"},"user_id":"5c3085a7a3885417eafce6b6","__v":0}
+{"_id":{"$oid":"5c1413cdfb96f400165f46a7"},"name":"Bacon","date":{"$date":"2018-12-14T20:34:21.163Z"},"user_id":"5c3ce69f8fdaa707b8952b1e","__v":0}
