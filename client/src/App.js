@@ -9,8 +9,8 @@ import { setCurrentUser, logoutUser } from './actions/authActions';
 
 import Navbar from './components/Navbar';
 import ShoppingList from './components/ShoppingList';
-import Register from './components/auth/register';
-import Login from './components/auth/login';
+import Register from './components/auth/Register';
+import Login from './components/auth/Login';
 import Landing from './components/Landing';
 import Footer from './components/Footer';
 import './App.css';

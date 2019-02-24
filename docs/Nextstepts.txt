@@ -1,0 +1,5 @@
+Add a Profile for the user where he can add recipes which will be the basis for the shoppinglist!
+
+A Recipe has the ingredients included which get merged into a shoppinglist
+
+But also grant the possibility to save "quick buy" lists with no recipe as foundation
