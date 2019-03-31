@@ -13,6 +13,7 @@ import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import Landing from './components/Landing';
 import Footer from './components/Footer';
+import Dashboard from './components/dashboard/Dashboard';
 import './App.css';
 
 //check for token to keep logged in on page change or reload
@@ -48,6 +49,7 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register}/>
               <Route exact path="/login" component={Login}/>
+              <Route exact path="/dashboard" component={Dashboard}/>
               <Route exact path="/mylist" component={ShoppingList}/>
             </div>
             <Footer />
