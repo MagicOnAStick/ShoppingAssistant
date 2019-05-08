@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+# ignore the file package-lock.json
+package-lock.json
+
 # ide
 /.vscode
 

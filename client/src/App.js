@@ -15,6 +15,7 @@ import Landing from './components/Landing';
 import Footer from './components/Footer';
 import Dashboard from './components/dashboard/Dashboard';
 import './App.css';
+import { clearCurrentProfile } from './actions/profileActions';
 
 //check for token to keep logged in on page change or reload
 const jwtToken = localStorage.jwtToken;
@@ -33,6 +34,7 @@ if(jwtToken){
   if( decoded.exp < currentTime ){
     //Logout user
     store.dispatch(logoutUser());
+    store.dispatch(clearCurrentProfile());
     window.location.href = '/login';
   }
 }
