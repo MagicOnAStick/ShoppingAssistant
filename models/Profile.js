@@ -44,7 +44,23 @@ const ProfileSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+
+  experience: [
+    {
+      title: {
+        type: String,
+        required: true
+      },
+      description: {
+        type: String
+      },
+      from: {
+        type: Date,
+        required: true
+      }
+    }
+  ]
   
 });
 
