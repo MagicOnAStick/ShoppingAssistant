@@ -144,9 +144,18 @@ router.post('/unlike/:id', passport.authenticate('jwt',{ session: false }), (req
 });
 
 // @route post api/recipe/comment/:id
-// @desc  comment a specific recipe
+// @desc  comment a specific recipe (with given id)
 // @access private
 router.post('/comment/:id', passport.authenticate('jwt',{ session: false }), (req,res) => {
+    
+    //validates the comment text
+    const {errors, isValid} = validateRecipeInput(req.body);
+
+    if(!isValid){
+        //return 400 with errors from validation
+        return res.status(400).json(errors);
+    }
+    
     Recipe.findById(req.params.id)
     .then(recipe => {
         const newComment = {
@@ -158,6 +167,28 @@ router.post('/comment/:id', passport.authenticate('jwt',{ session: false }), (re
         //add comment to array
         recipe.comments.unshift(newComment);
         recipe.save().then(recipe => res.json(recipe));
+    }).catch(() => res.status(404).json({postnotfound: 'no recipe found with this id'}));
+});
+
+// @route delete api/recipe/comment/:id/:comment_id
+// @desc  delete a specific comment from a specific recipe (with given id)
+// @access private
+router.delete('/comment/:id/:comment_id', passport.authenticate('jwt',{ session: false }), (req,res) => {    
+    Recipe.findById(req.params.id)
+    .then(recipe => {
+        //check if the comment exits
+        if(recipe.comments.filter(comment => comment._id.toString() === req.params.comment_id).length === 0){
+            return res.status(404).json({ commentnotexits: 'comment does not exist!'});
+        }
+            //splice the comment with the matching id out of the comments array
+            recipe.comments.splice(recipe.comments
+            .map(item => item._id.toString())
+            .indexOf(req.params.comment_id),1);
+
+            recipe
+            .save()
+            .then(recipe => res.json(recipe));
+
     }).catch(() => res.status(404).json({postnotfound: 'no recipe found with this id'}));
 });
 
