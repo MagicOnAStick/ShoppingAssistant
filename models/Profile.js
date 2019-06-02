@@ -14,8 +14,14 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
-  company: {
-    type: String
+  goal: {
+    image: {
+        type: String,
+        data: Buffer
+    },
+    name: {
+        type: String
+    }
   },
   location: {
     type: String
@@ -26,6 +32,24 @@ const ProfileSchema = new Schema({
   },
   preferences: {
     type: [String]
+  },
+  achievements:[
+    {
+      icon: {
+        type: String,
+        data: Buffer
+      },
+      name: {
+        type: String
+      },
+      description: {
+        type: String
+      }
+    }
+  ],
+  current_weekplan:{
+    type: Schema.Types.ObjectId,
+    ref: 'week'
   },
   bio: {
     type: String

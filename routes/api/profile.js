@@ -102,7 +102,7 @@ router.post('/', passport.authenticate('jwt', {session: false}),
     const profileFields = {};
     profileFields.user = req.user.id;
     if(req.body.handle) profileFields.handle = req.body.handle;
-    if(req.body.company) profileFields.company = req.body.company;
+    //if(req.body.company) profileFields.company = req.body.company; -> TODO change to goal
     if(req.body.location) profileFields.location = req.body.location;
     if(req.body.status) profileFields.status = req.body.status;
 
@@ -198,14 +198,13 @@ router.delete('/experience/:exp_id', passport.authenticate('jwt', {session: fals
 router.delete('/', passport.authenticate('jwt', {session: false}), (req,res) =>{
   Profile.findOneAndRemove({user : req.user.id})
   .then(() => {
-    res.json({success: true}); //TODO Check functionality!!!!!!!!
+    //res.json({success: true}); //TODO Check functionality!!!!!!!!
+    
     //delete user
-    //User.findOneAndRemove({_id: req.user.id})
-    //.then(() => res.json({success: "true"}));
+    User.findOneAndRemove({_id: req.user.id})
+    .then(() => res.json({success: "true"}));
   });
 });
-
-
 
 //make this specific router accessible
 module.exports = router;

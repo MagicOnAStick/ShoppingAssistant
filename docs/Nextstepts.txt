@@ -2,4 +2,41 @@ Add a Profile for the user where he can add recipes which will be the basis for 
 
 A Recipe has the ingredients included which get merged into a shoppinglist
 
-But also grant the possibility to save "quick buy" lists with no recipe as foundation
+But also grant the user the possibility to add his own "quick buy" lists with no recipe as foundation
+
+Concept:
+Niche: Fitness Community
+Features: Social Media Stream of Recipes or complete diets actually really used from active athletes / body builders.
+
+Profile:
+Each user can add a profile where he has to offer some information about his workout goals and diet plan. (KISS)
+For example: "What is your goal", Losing weight| gaining muscle| gaining weight| keep muscle etc.
+The user has the option to actually add his current diet plan to his profile or update it.
+Additionally there are some interest fields [preferences] (low-carb, hiit, etc.) to automatically show news feeds from other people with the same interests, one did not follow yet (twitter like).
+A user can follow another user by clicking at his profile and "follow"
+
+News feed / Interaction:
+Users are able to post updates in their feed (?pre configured form, to keep posts [type]recipe relevant?)
+Users are able to like and comment posts 
+Consumers are able to import or save recipes posted from other people or from other peoples profiles
+
+Optional enhancements: Users can post product recommendations (?pre configured form to keep [type]recommendations relevant?)
+Consumers are able to [productdata]enhance / change their recipes / shoppinglists according to the recommendation (for all lists, for a specific list)
+
+Gamification:
+Users are able to receive achievements e.g. for posting recipes frequently, getting lots of imports, interaction and so on
+The achievements are shown on their profiles
+
+Additional Info:
+Add the ability to show calories and specific values like protein, carbs, fats etc. to each recipe / ingredients
+The first time a new ingredient is added to a shoppinglist or recipe the user must type in the values himself (user unspecific product database for value storage)
+The second time an already added ingredient is added to a shoppinglist or recipe the values are added automatically 
+(with the option to alter them, 
+[add 2 "altered" fields with the new value as valuerange and user count to the value storage. If more users alter the initial value to the same updated value or valuerange, this will be the new default value for the product])
+
+
+Additional functionality:
+Import from Instagram post, this will only work if in the Instagram post there is text for the recipe / ingredients
+Phase1: Write an AI which generates the recipe text and ingredients from a picture (add lots of questions to feed the AI, communicate the alpha state for more user acceptance)
+Phase2: Start with simple recognition like Burger, Pasta, Salad, Cereal and enhance it to scan for specific components like Advocado Burger, Pasta with Tomatosauce etc.
+Phase 3: Only ask questions for products that cant be identified automatically for exapmle a protein shake. (if the same answer is given more and more only give the chance to update the selection)
