@@ -48,8 +48,8 @@ router.delete('/:id', passport.authenticate('jwt',{ session: false }), (req,res)
     })
 });
 
-// @route delete api/recipe/:id
-// @desc  delete recipe by id
+// @route update api/recipe/:id
+// @desc  update recipe by id
 // @access private
 router.put('/:id', passport.authenticate('jwt',{ session: false }), (req,res) => {
 

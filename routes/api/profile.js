@@ -9,6 +9,9 @@ const validateExperienceInput = require('../../validation/experience');
 //Models
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Weekplan = require('../../models/Weekplan');
+const Achievement = require('../../models/Achievement');
+
 //DB
 const mongoose = require('mongoose');
 //use for protected routes
@@ -102,7 +105,7 @@ router.post('/', passport.authenticate('jwt', {session: false}),
     const profileFields = {};
     profileFields.user = req.user.id;
     if(req.body.handle) profileFields.handle = req.body.handle;
-    //if(req.body.company) profileFields.company = req.body.company; -> TODO change to goal
+    if(req.body.goal) profileFields.goal = req.body.goal;
     if(req.body.location) profileFields.location = req.body.location;
     if(req.body.status) profileFields.status = req.body.status;
 
@@ -192,15 +195,48 @@ router.delete('/experience/:exp_id', passport.authenticate('jwt', {session: fals
     .catch(err => res.status(404).json(err));
 });
 
+//@route  POST api/profile/weekplan
+//@desc   add weekplan to profile
+//@access private (user required)
+router.post('/weekplan/:weekplan_id', passport.authenticate('jwt', {session: false}), (req,res) =>{
+  
+  Profile.findOne({user: req.user.id})
+    .then(profile => {
+      
+      Weekplan.findById(req.params.weekplan_id)
+      .then(plan =>{
+
+        profile.current_weekplan = plan;
+        profile.save().then(profile => res.json(profile));
+      });
+    });
+});
+
+//@route  POST api/profile/achievement
+//@desc   add achievement to profile
+//@access private (user required)
+router.post('/achievement/:achievement_id', passport.authenticate('jwt', {session: false}), (req,res) =>{
+  
+  Profile.findOne({user: req.user.id})
+    .then(profile => {
+      
+      Achievement.findById(req.params.achievement_id)
+      .then(achievement =>{
+
+        profile.achievements.unshift(achievement); //unshift adds the element at the beginning of the array
+        profile.save().then(profile => res.json(profile));
+      });
+    });
+});
+
 //@route  DELETE api/profile
 //@desc   delete user and profile
 //@access private (user required)
 router.delete('/', passport.authenticate('jwt', {session: false}), (req,res) =>{
   Profile.findOneAndRemove({user : req.user.id})
-  .then(() => {
-    //res.json({success: true}); //TODO Check functionality!!!!!!!!
-    
-    //delete user
+  .then(profile => {
+    profile.remove();    
+    //delete user behind the profile
     User.findOneAndRemove({_id: req.user.id})
     .then(() => res.json({success: "true"}));
   });

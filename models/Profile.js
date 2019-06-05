@@ -15,13 +15,7 @@ const ProfileSchema = new Schema({
     max: 40
   },
   goal: {
-    image: {
-        type: String,
-        data: Buffer
-    },
-    name: {
-        type: String
-    }
+    type: String
   },
   location: {
     type: String
@@ -35,16 +29,8 @@ const ProfileSchema = new Schema({
   },
   achievements:[
     {
-      icon: {
-        type: String,
-        data: Buffer
-      },
-      name: {
-        type: String
-      },
-      description: {
-        type: String
-      }
+      type: Schema.Types.ObjectId,
+      ref: 'achievement'
     }
   ],
   current_weekplan:{
