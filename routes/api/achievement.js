@@ -3,9 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 
 const Achievement = require('../../models/Achievement');
-
-//TODO - Achievementvalidation!
-//const validateWeekplanTextInput = require('../../validation/weekplan');
+const validateAchievementInput = require('../../validation/achievement');
 
 // @route GET api/achievement/:id
 // @desc  Get achievement by id
@@ -66,8 +64,11 @@ router.put('/:id', passport.authenticate('jwt',{ session: false }), (req,res) =>
 // @desc  Create a new achievement
 // @access private 
 router.post('/', passport.authenticate('jwt',{ session: false }), (req,res) =>{
-   //TODO VALIDATION for Achievements 
-   //   const {errors, isValid} = validateWeekplanTextInput(req.body);
+        const {errors, isValid} = validateAchievementInput(req.body);
+
+        if(!isValid){
+            return res.status(400).json({achievementvalidationerror: errors});
+        }
 
         const newAchievement = new Achievement({
             user: req.user.id,

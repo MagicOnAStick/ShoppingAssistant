@@ -12,6 +12,7 @@ const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const recipe = require('./routes/api/recipe');
 const weekplan = require('./routes/api/weekplan');
+const achievement = require('./routes/api/achievement');
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -37,8 +38,7 @@ app.use('/api/users',users);
 app.use('/api/profile',profile);
 app.use('/api/recipe', recipe);
 app.use('/api/weekplan',weekplan);
-
-
+app.use('/api/achievement', achievement);
 
 //deployment
 if(process.env.NODE_ENV === 'production'){
