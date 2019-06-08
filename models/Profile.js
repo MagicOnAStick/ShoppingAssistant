@@ -14,18 +14,14 @@ const ProfileSchema = new Schema({
     required: true,
     max: 40
   },
-  goal: {
-    type: String
+  interests: {
+    type: [String]
   },
   location: {
     type: String
   },
   status: {
-    type: String,
-    required: true
-  },
-  preferences: {
-    type: [String]
+    type: String
   },
   achievements:[
     {

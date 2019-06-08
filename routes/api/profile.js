@@ -105,12 +105,11 @@ router.post('/', passport.authenticate('jwt', {session: false}),
     const profileFields = {};
     profileFields.user = req.user.id;
     if(req.body.handle) profileFields.handle = req.body.handle;
-    if(req.body.goal) profileFields.goal = req.body.goal;
     if(req.body.location) profileFields.location = req.body.location;
     if(req.body.status) profileFields.status = req.body.status;
 
-    //split preferences list into array
-    if(typeof req.body.preferences != 'undefined') profileFields.preferences = req.body.preferences.split(',');
+    //split interests list into array
+    if(typeof req.body.interests != 'undefined') profileFields.interests = req.body.interests.split(',');
     if(req.body.bio) profileFields.bio = req.body.bio;
 
     //social object inside profileFields object
