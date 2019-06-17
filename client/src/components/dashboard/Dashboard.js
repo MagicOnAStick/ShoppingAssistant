@@ -1,21 +1,10 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {getCurrentProfile} from '../../actions/profileActions';
+import React from "react";
+import PropTypes from "prop-types";
 
-class Dashboard extends Component {
-  
-  componentDidMount(){
-    this.props.getCurrentProfile();
-  }
-  
-  render() {
-    return (
-      <div>
-        
-      </div>
-    )
-  }
-}
+const Dashboard = props => {
+	return <div>Dashboard</div>;
+};
 
-export default connect(null, {getCurrentProfile})(Dashboard);
+Dashboard.propTypes = {};
+
+export default Dashboard;
