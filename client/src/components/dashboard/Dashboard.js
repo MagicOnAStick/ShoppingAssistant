@@ -21,6 +21,7 @@ const mapStateToProps = state => ({
 	profile: state.profile
 });
 
+//stackoverflow.com/questions/46276810/what-is-the-necessity-of-export-default-connect-when-you-are-connecting-your-r
 export default connect(
 	mapStateToProps,
 	{ getCurrentProfile }

@@ -8,9 +8,9 @@ import {
 } from "./types";
 
 // Get current profile
-export const getCurrentProfile = () => async dispatch => {
+export const getCurrentProfile = () => dispatch => {
 	dispatch(setProfileLoading());
-	await axios
+	axios
 		.get("/api/profile")
 		.then(res =>
 			dispatch({
@@ -22,7 +22,7 @@ export const getCurrentProfile = () => async dispatch => {
 			dispatch({
 				//return empty profile
 				type: GET_PROFILE,
-				payload: { msg: err.response.statusText, status: err.respnse.status }
+				payload: { msg: err.response.statusText, status: err.response.status }
 			})
 		);
 };

@@ -1,1 +1,3 @@
 User Loading (see AuthActions / AuthReducer)
+
+Async await (async before dispatch, await before the axios calls)
