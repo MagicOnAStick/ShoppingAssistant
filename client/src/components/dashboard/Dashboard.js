@@ -4,12 +4,16 @@ import { connect } from "react-redux";
 import { getCurrentProfile } from "../../actions/profileActions";
 
 import Spinner from "../layout/Spinner";
+import DashboardActions from "./DashboardActions";
 
+//this is a stateless component with props as params
+//https://itnext.io/react-component-class-vs-stateless-component-e3797c7d23ab
 const Dashboard = ({
 	getCurrentProfile,
 	auth,
 	profile: { profile, loading }
 }) => {
+	//instead of component did mount
 	useEffect(() => {
 		getCurrentProfile();
 	}, []);
@@ -23,6 +27,7 @@ const Dashboard = ({
 				<i className="fas fa-user" />
 				Welcome {auth.user && auth.user.name}
 			</p>
+			<DashboardActions />
 		</Fragment>
 	);
 };
