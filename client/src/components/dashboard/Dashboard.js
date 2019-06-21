@@ -13,7 +13,7 @@ const Dashboard = ({
 	auth,
 	profile: { profile, loading }
 }) => {
-	//instead of component did mount
+	//instead of component did mount https://reactjs.org/docs/hooks-state.html
 	useEffect(() => {
 		getCurrentProfile();
 	}, []);
