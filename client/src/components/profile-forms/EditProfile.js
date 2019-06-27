@@ -2,10 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-	createOrUpdateProfile,
-	getCurrentProfile
-} from "../../actions/profileActions";
+import { createOrUpdateProfile } from "../../actions/profileActions";
 import Select from "react-select";
 
 //add the props mapped from state as params
@@ -19,46 +16,64 @@ class EditProfile extends Component {
 			bio: "",
 			youtube: "",
 			facebook: "",
-			instagram: "",
-			displaySocialInputs: true
+			instagram: ""
 		};
 		this.onChange = this.onChange.bind(this);
 		this.onSubmit = this.onSubmit.bind(this);
+		this.selectOnInputChange = this.selectOnInputChange.bind(this);
 	}
 
 	componentDidMount() {
-		//useEffect(() => {
-		getCurrentProfile();
+		const { profile, loading } = this.props.profile;
 
 		this.setState({
-			interests: loading || !profile.interests ? "" : profile.interests,
-			location: loading || !profile.location ? "" : profile.location,
-			status: loading || !profile.status ? "" : profile.status,
-			bio: loading || !profile.bio ? "" : profile.bio,
-			facebook: loading || !profile.social ? "" : profile.social.facebook,
-			youtube: loading || !profile.social ? "" : profile.social.youtube,
-			instagram: loading || !profile.social ? "" : profile.social.instagram
+			interests: !profile.interests ? "" : profile.interests,
+			location: !profile.location ? "" : profile.location,
+			status: !profile.status ? "" : profile.status,
+			bio: !profile.bio ? "" : profile.bio,
+			facebook: !profile.social ? "" : profile.social.facebook,
+			youtube: !profile.social ? "" : profile.social.youtube,
+			instagram: !profile.social ? "" : profile.social.instagram
 		});
-		//}, [loading]); //run this effect while loading
 	}
 
 	onChange = e => this.setState({ [e.target.name]: e.target.value });
 
 	onSubmit = e => {
 		e.preventDefault();
-		createOrUpdateProfile(this.state, history);
+		createOrUpdateProfile(this.state, this.props.history);
 	};
+
+	//https://react-select.com/advanced#methods
+	//inputValue and action are props from the Select Component passed at event handling
+	selectOnInputChange(value, action) {
+		switch (action.action) {
+			case "select-option":
+				this.setState({ interests: [] });
+				value.forEach(item => {
+					this.setState({
+						interests: [...this.state.interests, item]
+					});
+				});
+				return;
+			case "clear":
+				this.setState({ interests: [] });
+				return;
+			default:
+				return;
+		}
+	}
 
 	render() {
 		const interestOptions = [
 			{ value: "lose_weight", label: "Lose Weight" },
 			{ value: "gain_weight", label: "Gain Weight" },
-			{ value: "keep_weight", label: "keep_weight" },
-			{ value: "gain_muscle", label: "Gain Muscle" }
+			{ value: "keep_weight", label: "Keep my Weight" },
+			{ value: "gain_muscle", label: "Gain more Muscle" }
 		];
 
 		return (
-			<Fragment>
+			<div className="editProfile">
 				<h1 className="large text-primary">Create Your Profile</h1>
 				<p className="lead">
 					<i className="fas fa-user" /> Let's do some information to make your
@@ -72,24 +87,10 @@ class EditProfile extends Component {
 							name="interests"
 							options={interestOptions}
 							value={this.state.interests}
-							onChange={e => this.onChange(e)}
+							onChange={this.selectOnInputChange}
 							className="basic-multi-select"
 							classNamePrefix="multi-select"
 						/>
-						<select
-							multiple
-							name="status"
-							value={this.state.status}
-							onChange={e => this.onChange(e)}
-						>
-							<option value="0">* Select Experience Status</option>
-							<option value="Beginner">Beginner</option>
-							<option value="Intermediate">Intermediate</option>
-							<option value="Pro">Pro</option>
-							<option value="Body Builder">Body Builder</option>
-							<option value="Influencer / Model">Influencer / Model</option>
-							<option value="Other">Other</option>
-						</select>
 						<small className="form-text">
 							What are the things you are interested in the most, fitness wise?
 						</small>
@@ -119,7 +120,7 @@ class EditProfile extends Component {
 							onChange={e => this.onChange(e)}
 						/>
 						<small className="form-text">
-							City & state suggested (eg. Boston, MA)
+							State suggested (eg. Boston, MA)
 						</small>
 					</div>
 					<div className="form-group">
@@ -133,63 +134,50 @@ class EditProfile extends Component {
 							Tell us a little about your story
 						</small>
 					</div>
-					<div className="my-2">
-						<button
-							onClick={e => (this.state.displaySocialInputs = !e.target.value)}
-							type="button"
-							className="btn btn-light"
-						>
-							Add Social Network Links
-						</button>
-						<span>Optional</span>
+
+					<div className="form-group social-input">
+						<i className="fab fa-facebook fa-2x" />
+						<input
+							type="text"
+							placeholder="Facebook URL"
+							name="facebook"
+							value={this.state.facebook}
+							onChange={e => this.onChange(e)}
+						/>
 					</div>
-					{displaySocialInputs && (
-						<Fragment>
-							<div className="form-group social-input">
-								<i className="fab fa-facebook fa-2x" />
-								<input
-									type="text"
-									placeholder="Facebook URL"
-									name="facebook"
-									value={this.state.facebook}
-									onChange={e => this.onChange(e)}
-								/>
-							</div>
-							<div className="form-group social-input">
-								<i className="fab fa-youtube fa-2x" />
-								<input
-									type="text"
-									placeholder="YouTube URL"
-									name="youtube"
-									value={this.state.youtube}
-									onChange={e => this.onChange(e)}
-								/>
-							</div>
-							<div className="form-group social-input">
-								<i className="fab fa-instagram fa-2x" />
-								<input
-									type="text"
-									placeholder="Instagram URL"
-									name="instagram"
-									value={this.state.instagram}
-									onChange={e => this.onChange(e)}
-								/>
-							</div>
-						</Fragment>
-					)}
+					<div className="form-group social-input">
+						<i className="fab fa-youtube fa-2x" />
+						<input
+							type="text"
+							placeholder="YouTube URL"
+							name="youtube"
+							value={this.state.youtube}
+							onChange={e => this.onChange(e)}
+						/>
+					</div>
+					<div className="form-group social-input">
+						<i className="fab fa-instagram fa-2x" />
+						<input
+							type="text"
+							placeholder="Instagram URL"
+							name="instagram"
+							value={this.state.instagram}
+							onChange={e => this.onChange(e)}
+						/>
+					</div>
+
 					<input type="submit" className="btn btn-primary my-1" />
 					<Link className="btn btn-light my-1" to="/dashboard">
 						Go Back
 					</Link>
 				</form>
-			</Fragment>
+			</div>
 		);
 	}
 }
 
-CreateProfile.propTypes = {
+EditProfile.propTypes = {
 	createOrUpdateProfile: PropTypes.func.isRequired,
-	getCurrentProfile: PropTypes.func.isRequired,
 	profile: PropTypes.object.isRequired
 };
 
@@ -201,5 +189,5 @@ const mapStateToProps = state => ({
 //why do the used methods from the actions need to be passed here? For Component init maybe?
 export default connect(
 	mapStateToProps,
-	{ createOrUpdateProfile, getCurrentProfile }
+	{ createOrUpdateProfile }
 )(withRouter(EditProfile));
