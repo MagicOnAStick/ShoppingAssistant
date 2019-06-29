@@ -7,6 +7,8 @@ import {
 	CLEAR_CURRENT_PROFILE
 } from "./types";
 
+//TODO CHECK ASYNC AWAIT!!!
+
 // Get current profile
 export const getCurrentProfile = () => dispatch => {
 	dispatch(setProfileLoading());
@@ -28,11 +30,7 @@ export const getCurrentProfile = () => dispatch => {
 };
 
 // Create or update profile
-export const createOrUpdateProfile = (
-	formData,
-	history,
-	edit = false
-) => async dispatch => {
+export const createProfile = (formData, history, edit = false) => dispatch => {
 	try {
 		const config = {
 			headers: {
@@ -40,7 +38,7 @@ export const createOrUpdateProfile = (
 			}
 		};
 
-		const res = await axios.post("/api/profile", formData, config);
+		const res = axios.post("/api/profile", formData, config);
 
 		dispatch({
 			type: GET_PROFILE,

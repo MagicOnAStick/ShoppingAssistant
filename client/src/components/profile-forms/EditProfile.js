@@ -2,7 +2,7 @@ import React, { Component, Fragment } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createOrUpdateProfile } from "../../actions/profileActions";
+import { createProfile } from "../../actions/profileActions";
 import Select from "react-select";
 
 //add the props mapped from state as params
@@ -41,7 +41,7 @@ class EditProfile extends Component {
 
 	onSubmit = e => {
 		e.preventDefault();
-		createOrUpdateProfile(this.state, this.props.history);
+		this.props.createProfile(this.state, this.props.history, true);
 	};
 
 	//https://react-select.com/advanced#methods
@@ -135,37 +135,6 @@ class EditProfile extends Component {
 						</small>
 					</div>
 
-					<div className="form-group social-input">
-						<i className="fab fa-facebook fa-2x" />
-						<input
-							type="text"
-							placeholder="Facebook URL"
-							name="facebook"
-							value={this.state.facebook}
-							onChange={e => this.onChange(e)}
-						/>
-					</div>
-					<div className="form-group social-input">
-						<i className="fab fa-youtube fa-2x" />
-						<input
-							type="text"
-							placeholder="YouTube URL"
-							name="youtube"
-							value={this.state.youtube}
-							onChange={e => this.onChange(e)}
-						/>
-					</div>
-					<div className="form-group social-input">
-						<i className="fab fa-instagram fa-2x" />
-						<input
-							type="text"
-							placeholder="Instagram URL"
-							name="instagram"
-							value={this.state.instagram}
-							onChange={e => this.onChange(e)}
-						/>
-					</div>
-
 					<input type="submit" className="btn btn-primary my-1" />
 					<Link className="btn btn-light my-1" to="/dashboard">
 						Go Back
@@ -177,7 +146,7 @@ class EditProfile extends Component {
 }
 
 EditProfile.propTypes = {
-	createOrUpdateProfile: PropTypes.func.isRequired,
+	createProfile: PropTypes.func.isRequired,
 	profile: PropTypes.object.isRequired
 };
 
@@ -189,5 +158,5 @@ const mapStateToProps = state => ({
 //why do the used methods from the actions need to be passed here? For Component init maybe?
 export default connect(
 	mapStateToProps,
-	{ createOrUpdateProfile }
+	{ createProfile }
 )(withRouter(EditProfile));
