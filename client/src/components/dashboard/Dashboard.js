@@ -16,7 +16,7 @@ const Dashboard = ({
 	//instead of component did mount https://reactjs.org/docs/hooks-state.html
 	useEffect(() => {
 		getCurrentProfile();
-	}, []);
+	}, [getCurrentProfile]);
 
 	return loading && profile === null ? (
 		<Spinner />
@@ -27,7 +27,18 @@ const Dashboard = ({
 				<i className="fas fa-user" />
 				Welcome {auth.user && auth.user.name}
 			</p>
-			<DashboardActions />
+			{profile !== null ? (
+				<Fragment>
+					<DashboardActions />
+				</Fragment>
+			) : (
+				<Fragment>
+					<p>You have not yet setup a profile, please add some info</p>
+					<Link to="/create-profile" className="btn btn-primary my-1">
+						Create Profile
+					</Link>
+				</Fragment>
+			)}
 		</Fragment>
 	);
 };
