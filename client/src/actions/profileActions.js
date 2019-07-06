@@ -23,7 +23,7 @@ export const getCurrentProfile = () => dispatch => {
 		.catch(err =>
 			dispatch({
 				//return empty profile
-				type: GET_PROFILE,
+				type: PROFILE_ERROR,
 				payload: { msg: err.response.statusText, status: err.response.status }
 			})
 		);

@@ -2,8 +2,10 @@ import React, { Fragment, useState } from "react";
 import { Link, withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { createProfile } from "../../actions/profile";
+import { createProfile } from "../../actions/profileActions";
+import Select from "react-select";
 
+//extract createProfile and histroy from props (history comes from withRouter)
 const CreateProfile = ({ createProfile, history }) => {
 	const [formData, setFormData] = useState({
 		interests: [],
@@ -41,7 +43,10 @@ const CreateProfile = ({ createProfile, history }) => {
 			case "select-option":
 				setFormData({ ...formData, interests: [] });
 				value.forEach(item => {
-					setFormData({ ...formData, interests: [interests, item] });
+					setFormData({
+						...formData,
+						interests: [...formData.interests, item]
+					});
 				});
 				return;
 			case "clear":
@@ -83,7 +88,7 @@ const CreateProfile = ({ createProfile, history }) => {
 					</small>
 				</div>
 				<div className="form-group">
-					<select name="status" value={status} onChange={e => this.onChange(e)}>
+					<select name="status" value={status} onChange={e => onChange(e)}>
 						<option value="0">* Select Experience Status</option>
 						<option value="Beginner">Beginner</option>
 						<option value="Intermediate">Intermediate</option>
@@ -94,18 +99,6 @@ const CreateProfile = ({ createProfile, history }) => {
 					</select>
 					<small className="form-text">
 						Give an idea of where you are at in your fitness way of living
-					</small>
-				</div>
-				<div className="form-group">
-					<input
-						type="text"
-						placeholder="Website"
-						name="website"
-						value={website}
-						onChange={e => onChange(e)}
-					/>
-					<small className="form-text">
-						Could be your own or a company website
 					</small>
 				</div>
 				<div className="form-group">
