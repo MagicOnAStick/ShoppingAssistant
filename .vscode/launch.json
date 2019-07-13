@@ -15,7 +15,7 @@
             "request": "launch",
             "name": "Launch Client inside Chrome against Localhost",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}/client/src"
         }
     ]
 }

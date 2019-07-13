@@ -43,6 +43,7 @@ const CreateProfile = ({ createProfile, history }) => {
 			case "select-option":
 				setFormData({ ...formData, interests: [] });
 				value.forEach(item => {
+					console.log(item.label);
 					setFormData({
 						...formData,
 						interests: [...formData.interests, item]
@@ -50,7 +51,7 @@ const CreateProfile = ({ createProfile, history }) => {
 				});
 				return;
 			case "clear":
-				this.setState({ interests: [] });
+				setFormData({ ...formData, interests: [] });
 				return;
 			default:
 				return;

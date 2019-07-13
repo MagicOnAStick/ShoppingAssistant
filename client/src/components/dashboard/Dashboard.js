@@ -28,7 +28,7 @@ const Dashboard = ({
 				<i className="fas fa-user" />
 				Welcome {auth.user && auth.user.name}
 			</p>
-			{profile !== null ? (
+			{profile !== null && profile !== undefined ? (
 				<Fragment>
 					<DashboardActions />
 				</Fragment>

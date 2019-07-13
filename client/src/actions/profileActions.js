@@ -24,7 +24,7 @@ export const getCurrentProfile = () => dispatch => {
 			dispatch({
 				//return empty profile
 				type: PROFILE_ERROR,
-				payload: { msg: err.response.statusText, status: err.response.status }
+				payload: { msg: err.response }
 			})
 		);
 };
@@ -45,11 +45,11 @@ export const createProfile = (formData, history, edit = false) => dispatch => {
 			payload: res.data
 		});
 
-		dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
+		//dispatch(setAlert(edit ? "Profile Updated" : "Profile Created", "success"));
 
-		if (!edit) {
-			history.push("/dashboard");
-		}
+		//if (!edit) {
+		history.push("/dashboard");
+		//}
 	} catch (err) {
 		const errors = err.response.data.errors;
 

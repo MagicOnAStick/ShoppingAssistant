@@ -8,15 +8,16 @@ const ProfileSchema = new Schema({
 		//collection to refer
 		ref: "users"
 	},
-	//for seo friendly url
-	handle: {
-		type: String,
-		required: true,
-		max: 40
-	},
-	interests: {
-		type: [String]
-	},
+	interests: [
+		{
+			value: {
+				type: String
+			},
+			label: {
+				type: String
+			}
+		}
+	],
 	location: {
 		type: String
 	},
